@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Bhai Dooj 🎁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #ffe6f2, #fff5e6);
+      padding: 16px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+      padding: 20px 22px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: #ff7aa5;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .decor-circle {
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.8), rgba(255, 122, 165, 0.6));
+      top: -120px;
+      left: -50px;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    .header {
+      text-align: center;
+      margin-top: 16px;
+      margin-bottom: 14px;
+    }
+
+    .header h1 {
+      font-size: 26px;
+      line-height: 1.2;
+      background: linear-gradient(120deg, #ff6b9c, #ff9a5c);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .header p {
+      font-size: 13px;
+      color: #666;
+      margin-top: 4px;
+    }
+
+    .avatar-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 14px 0 18px;
+    }
+
+    .avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ff7aa5, #ffb067);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .avatar span.small {
+      font-size: 11px;
+      position: absolute;
+      bottom: 6px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      opacity: 0.85;
+    }
+
+    .between {
+      font-size: 24px;
+      opacity: 0.6;
+    }
+
+    .message-box {
+      background: #fff7f9;
+      border-radius: 16px;
+      padding: 12px 14px;
+      border: 1px dashed rgba(255, 122, 165, 0.6);
+      font-size: 13px;
+      color: #444;
+      line-height: 1.5;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .message-box::before {
+      content: "💕";
+      position: absolute;
+      font-size: 40px;
+      opacity: 0.16;
+      right: 6px;
+      bottom: -4px;
+      transform: rotate(-8deg);
+    }
+
+    .names {
+      margin-top: 8px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .names span {
+      color: #ff6b9c;
+    }
+
+    .footer {
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+    }
+
+    .btn {
+      margin-top: 4px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(120deg, #ff7aa5, #ff9a5c);
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 8px 18px rgba(255, 122, 165, 0.4);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .btn:active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.18);
+    }
+
+    .tiny {
+      font-size: 11px;
+      opacity: 0.85;
+    }
+
+    /* Confetti */
+    .confetti-piece {
+      position: fixed;
+      width: 8px;
+      height: 12px;
+      border-radius: 2px;
+      top: -20px;
+      animation: fall 1.8s linear forwards;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translate3d(var(--x-move), 110vh, 0) rotate(340deg);
+        opacity: 0;
+      }
+    }
+
+    /* Float animations for decor */
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+      100% { transform: translateY(0); }
+    }
+
+    .avatar {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .badge {
+      animation: float 3.4s ease-in-out infinite;
+    }
+
+    @media (max-width: 400px) {
+      .card {
+        padding: 18px 16px 20px;
+        border-radius: 20px;
+      }
+      .header h1 {
+        font-size: 23px;
+      }
+      .avatar {
+        width: 64px;
+        height: 64px;
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="decor-circle"></div>
+    <div class="badge">Bhai Dooj 2025</div>
+
+    <div class="header">
+      <h1>Happy Bhai Dooj 💫</h1>
+      <p>
+        A small digital surprise, made just for you.
+      </p>
+    </div>
+
+    <div class="avatar-row">
+      <div class="avatar" id="sisterAvatar">
+        <span id="sisterInitial">S</span>
+        <span class="small">Sister</span>
+      </div>
+      <div class="between">🤍</div>
+      <div class="avatar" id="brotherAvatar">
+        <span id="brotherInitial">B</span>
+        <span class="small">Brother</span>
+      </div>
+    </div>
+
+    <div class="message-box" id="mainMessage">
+      Dear <span id="toNameSpan">Brother</span>,  
+      <br /><br />
+      Today on Bhai Dooj, I just want to say thank you for all the times you've
+      protected me, made me laugh, and stood by me.
+      <br /><br />
+      No matter how much we fight, you’ll always be my favorite headache and my
+      strongest support. Stay happy, stay blessed, and remember – your sister is
+      always there for you. 💖
+      <div class="names">
+        From <span id="fromNameSpan">Your Sister</span>
+      </div>
+    </div>
+
+    <div class="footer">
+      <button class="btn" id="surpriseBtn">
+        Tap for a small surprise ✨
+      </button>
+      <div class="tiny">
+        Share this link with your sibling to make their day brighter 🌟
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Read names from URL: ?from=Sahil&to=Ayesha
+    const params = new URLSearchParams(window.location.search);
+    const fromName = params.get("from") || "Your Sister";
+    const toName = params.get("to") || "Dear Brother";
+
+    document.getElementById("fromNameSpan").textContent = fromName;
+    document.getElementById("toNameSpan").textContent = toName;
+
+    // Set initials in avatars
+    const sisterInitialEl = document.getElementById("sisterInitial");
+    const brotherInitialEl = document.getElementById("brotherInitial");
+
+    sisterInitialEl.textContent = (fromName.trim()[0] || "S").toUpperCase();
+    brotherInitialEl.textContent = (toName.trim()[0] || "B").toUpperCase();
+
+    // Confetti generator
+    function launchConfetti() {
+      const colors = ["#ff7aa5", "#ff9a5c", "#ffd700", "#7dd3fc", "#a7f3d0"];
+
+      for (let i = 0; i < 110; i++) {
+        const piece = document.createElement("div");
+        piece.classList.add("confetti-piece");
+
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        const randomLeft = Math.random() * 100;
+        const randomXMove = (Math.random() - 0.5) * 200 + "px";
+        const randomDelay = Math.random() * 0.4;
+
+        piece.style.left = randomLeft + "vw";
+        piece.style.background = randomColor;
+        piece.style.setProperty("--x-move", randomXMove);
+        piece.style.animationDelay = randomDelay + "s";
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => piece.remove(), 2000);
+      }
+    }
+
+    // Surprise button click
+    const btn = document.getElementById("surpriseBtn");
+    const msgBox = document.getElementById("mainMessage");
+
+    let clicked = false;
+
+    btn.addEventListener("click", () => {
+      launchConfetti();
+
+      if (!clicked) {
+        const extra = document.createElement("p");
+        extra.style.marginTop = "10px";
+        extra.style.fontSize = "12px";
+        extra.style.fontWeight = "600";
+        extra.style.color = "#c026d3";
+        extra.textContent = "P.S. This card was made with a lot of love and a little bit of code 💻💖";
+        msgBox.appendChild(extra);
+        clicked = true;
+      }
+    });
+  </script>
+</body>
+</html>
