@@ -2,347 +2,836 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Happy Bhai Dooj 🎁</title>
+  <title>Bhai Dooj Card 🤍</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    :root {
+      --bg: #fff3f5;
+      --card-bg: #fff;
+      --pink: #f670a8;
+      --pink-soft: #ffe0ec;
+      --accent: #ffc9dd;
+      --text-main: #33323a;
+      --text-soft: #6f6b7a;
+      --blue-soft: #d6e7ff;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.09);
+      --radius-lg: 26px;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
     }
 
     body {
+      background: radial-gradient(circle at top, #ffeef4, #fff8f0);
       min-height: 100vh;
       display: flex;
-      align-items: center;
+      align-items: stretch;
       justify-content: center;
-      background: radial-gradient(circle at top, #ffe6f2, #fff5e6);
-      padding: 16px;
+      padding: 18px 12px;
+      color: var(--text-main);
     }
 
-    .card {
+    .app-shell {
       width: 100%;
-      max-width: 420px;
-      background: white;
-      border-radius: 24px;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
-      padding: 20px 22px 24px;
-      position: relative;
+      max-width: 430px;
+      margin: auto;
+      background: var(--card-bg);
+      border-radius: 32px;
+      box-shadow: var(--shadow-soft);
       overflow: hidden;
+      position: relative;
     }
 
-    .badge {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: #ff7aa5;
-      color: white;
-      padding: 4px 10px;
+    .top-bar {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      padding: 8px 16px;
+      gap: 6px;
+      background: #fff8fb;
+      border-bottom: 1px solid #ffe6f1;
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .pill {
+      width: 32px;
+      height: 4px;
       border-radius: 999px;
+      background: #ddd;
+      margin: 0 auto;
+      display: none;
+    }
+
+    .content {
+      padding: 22px 18px 18px;
+      position: relative;
+      min-height: 520px;
+    }
+
+    .slide {
+      display: none;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .tagline {
+      text-align: center;
       font-size: 11px;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 6px;
     }
 
-    .decor-circle {
-      position: absolute;
-      width: 240px;
-      height: 240px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 215, 0, 0.8), rgba(255, 122, 165, 0.6));
-      top: -120px;
-      left: -50px;
-      opacity: 0.18;
-      pointer-events: none;
-    }
-
-    .header {
+    .title-main {
       text-align: center;
-      margin-top: 16px;
-      margin-bottom: 14px;
-    }
-
-    .header h1 {
-      font-size: 26px;
-      line-height: 1.2;
-      background: linear-gradient(120deg, #ff6b9c, #ff9a5c);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .header p {
-      font-size: 13px;
-      color: #666;
-      margin-top: 4px;
-    }
-
-    .avatar-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      margin: 14px 0 18px;
-    }
-
-    .avatar {
-      width: 70px;
-      height: 70px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #ff7aa5, #ffb067);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
+      font-size: 38px;
       font-weight: 700;
-      font-size: 24px;
-      position: relative;
-      overflow: hidden;
+      color: var(--pink);
+      line-height: 1.05;
+      margin-bottom: 6px;
     }
 
-    .avatar span.small {
-      font-size: 11px;
-      position: absolute;
-      bottom: 6px;
-      left: 0;
-      right: 0;
+    .subtitle {
       text-align: center;
-      opacity: 0.85;
+      font-size: 14px;
+      color: var(--text-soft);
+      margin-bottom: 18px;
     }
 
-    .between {
-      font-size: 24px;
-      opacity: 0.6;
-    }
-
-    .message-box {
-      background: #fff7f9;
-      border-radius: 16px;
-      padding: 12px 14px;
-      border: 1px dashed rgba(255, 122, 165, 0.6);
-      font-size: 13px;
-      color: #444;
-      line-height: 1.5;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .message-box::before {
-      content: "💕";
+    .badge-floating {
       position: absolute;
-      font-size: 40px;
-      opacity: 0.16;
-      right: 6px;
-      bottom: -4px;
-      transform: rotate(-8deg);
-    }
-
-    .names {
-      margin-top: 8px;
+      left: 50%;
+      top: 78px;
+      transform: translateX(-50%) rotate(-6deg);
+      background: #ffd9e9;
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 11px;
       font-weight: 600;
-      font-size: 13px;
+      color: var(--text-main);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
     }
 
-    .names span {
-      color: #ff6b9c;
-    }
-
-    .footer {
-      margin-top: 18px;
+    .card-illust {
+      background: #fffdfd;
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: 0 12px 32px rgba(252, 182, 206, 0.35);
+      margin-top: 16px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
       align-items: center;
-      text-align: center;
-      font-size: 12px;
-      color: #777;
+      gap: 12px;
     }
 
-    .btn {
-      margin-top: 4px;
-      padding: 9px 16px;
+    .stick-figures {
+      width: 180px;
+      height: 140px;
+      border-radius: 22px;
+      background: #fff7fb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stick-figures::before {
+      content: "Best Siblings Ever ✨";
+      position: absolute;
+      bottom: 6px;
+      font-size: 11px;
+      color: #ff6fa9;
+      font-weight: 600;
+    }
+
+    .stick-boy,
+    .stick-girl {
+      width: 60px;
+      height: 90px;
+      border-radius: 50px;
+      background: #ffe0a3;
+      position: relative;
+      margin: 0 8px;
+    }
+
+    .stick-boy::before,
+    .stick-girl::before {
+      content: "";
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #ffecbf;
+      top: -26px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .stick-boy::after,
+    .stick-girl::after {
+      content: "😊";
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 22px;
+    }
+
+    .stick-boy {
+      background: linear-gradient(180deg, #9bd0ff, #5fa7ff);
+    }
+
+    .stick-girl {
+      background: linear-gradient(180deg, #ff9ac6, #ff6aa2);
+    }
+
+    .slide p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-soft);
+      text-align: center;
+    }
+
+    .highlight-name {
+      color: var(--pink);
+      font-weight: 600;
+    }
+
+    .divider-dots {
+      text-align: center;
+      margin: 16px 0 6px;
+      font-size: 18px;
+      color: var(--pink);
+    }
+
+    /* Puzzle slide */
+    .puzzle-title {
+      font-size: 26px;
+      text-align: center;
+      color: var(--pink);
+      margin-bottom: 8px;
+    }
+
+    .puzzle-sub {
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-soft);
+      margin-bottom: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      background: #fffdfd;
+      padding: 18px;
+      border-radius: 26px;
+      box-shadow: 0 12px 32px rgba(252, 182, 206, 0.25);
+      max-width: 280px;
+      margin: 0 auto;
+    }
+
+    .cell {
+      width: 80px;
+      height: 80px;
+      border-radius: 22px;
+      border: 2px solid #ffbdd8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      cursor: pointer;
+      background: #fff7fb;
+      transition: transform 0.12s ease, box-shadow 0.12s ease,
+        background 0.12s ease, border-color 0.12s ease;
+    }
+
+    .cell:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .cell.choco {
+      background: #ffe5f1;
+      border-color: #ff99c6;
+    }
+
+    .puzzle-success {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--pink);
+      font-weight: 600;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .puzzle-success.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Letter slide */
+    .letter-card {
+      background: #fffdfd;
+      border-radius: 26px;
+      padding: 20px 18px 22px;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.09);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .letter-card::before {
+      content: "HAPPY";
+      position: absolute;
+      font-size: 64px;
+      font-weight: 800;
+      color: rgba(255, 195, 220, 0.4);
+      top: -20px;
+      right: -8px;
+      letter-spacing: 0.08em;
+    }
+
+    .letter-head {
+      text-align: center;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 6px;
+    }
+
+    .letter-title {
+      text-align: center;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--pink);
+      margin-bottom: 4px;
+    }
+
+    .letter-dear {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .letter-body {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-soft);
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .letter-sign {
+      text-align: right;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    /* Thank you slide */
+    .thank-title {
+      text-align: center;
+      font-size: 30px;
+      margin-bottom: 6px;
+      color: var(--pink);
+    }
+
+    .thank-sub {
+      text-align: center;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 10px;
+    }
+
+    .thank-para {
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-soft);
+    }
+
+    /* Memories slide */
+    .mem-card {
+      background: #fff;
+      border-radius: 26px;
+      padding: 18px 16px 20px;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+    }
+
+    .mem-title {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--pink);
+      margin-bottom: 10px;
+    }
+
+    .mem-chip-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      font-size: 11px;
+      margin-bottom: 10px;
+      color: var(--text-soft);
+    }
+
+    .chip-label {
+      font-weight: 700;
+    }
+
+    .mem-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: 22px;
+      background: #fff7fb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      font-size: 42px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mem-image::after {
+      content: "Best Sister Ever 💖";
+      position: absolute;
+      bottom: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #ff6ba6;
+    }
+
+    .mem-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-soft);
+      margin-top: 6px;
+    }
+
+    .mem-sign {
+      font-style: italic;
+      font-size: 12px;
+      color: var(--pink);
+      font-weight: 600;
+    }
+
+    /* Music slide */
+    .music-card {
+      background: #fffdfd;
+      border-radius: 26px;
+      padding: 20px 18px 22px;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.09);
+    }
+
+    .music-title {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--pink);
+      margin-bottom: 6px;
+    }
+
+    .music-sub {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-soft);
+      margin-bottom: 16px;
+    }
+
+    .music-cover {
+      width: 120px;
+      height: 120px;
+      border-radius: 30px;
+      background: #ffe0f0;
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      box-shadow: 0 12px 28px rgba(252, 182, 206, 0.4);
+    }
+
+    .music-now {
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      color: var(--text-soft);
+    }
+
+    .music-song {
+      text-align: center;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .music-audio {
+      width: 100%;
+      margin-top: 6px;
+    }
+
+    /* Bottom nav */
+    .bottom-nav {
+      border-top: 1px solid #ffe4f0;
+      background: #fffafc;
+      padding: 10px 16px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .nav-btn {
       border-radius: 999px;
       border: none;
+      padding: 9px 18px;
       font-size: 14px;
       font-weight: 600;
-      cursor: pointer;
-      background: linear-gradient(120deg, #ff7aa5, #ff9a5c);
-      color: white;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      box-shadow: 0 8px 18px rgba(255, 122, 165, 0.4);
-      transition: transform 0.12s ease, box-shadow 0.12s ease;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+      white-space: nowrap;
     }
 
-    .btn:active {
-      transform: translateY(1px) scale(0.98);
-      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.18);
+    .nav-btn:active {
+      transform: translateY(1px);
+      box-shadow: none;
     }
 
-    .tiny {
+    .nav-btn.secondary {
+      background: var(--blue-soft);
+      box-shadow: 0 8px 20px rgba(138, 174, 255, 0.4);
+      color: #274266;
+    }
+
+    .nav-btn.primary {
+      background: var(--pink-soft);
+      box-shadow: 0 8px 20px rgba(255, 167, 209, 0.6);
+      color: #b63571;
+      margin-left: auto;
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: default;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .step-indicator {
       font-size: 11px;
-      opacity: 0.85;
+      color: var(--text-soft);
     }
 
-    /* Confetti */
-    .confetti-piece {
-      position: fixed;
-      width: 8px;
-      height: 12px;
-      border-radius: 2px;
-      top: -20px;
-      animation: fall 1.8s linear forwards;
-      z-index: 9999;
-      pointer-events: none;
+    .step-indicator span {
+      font-weight: 600;
+      color: var(--pink);
     }
 
-    @keyframes fall {
-      to {
-        transform: translate3d(var(--x-move), 110vh, 0) rotate(340deg);
-        opacity: 0;
+    @media (max-width: 430px) {
+      body {
+        padding: 10px;
       }
-    }
-
-    /* Float animations for decor */
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(6px); }
-      100% { transform: translateY(0); }
-    }
-
-    .avatar {
-      animation: float 3s ease-in-out infinite;
-    }
-
-    .badge {
-      animation: float 3.4s ease-in-out infinite;
-    }
-
-    @media (max-width: 400px) {
-      .card {
-        padding: 18px 16px 20px;
-        border-radius: 20px;
+      .app-shell {
+        border-radius: 24px;
       }
-      .header h1 {
-        font-size: 23px;
-      }
-      .avatar {
-        width: 64px;
-        height: 64px;
-        font-size: 20px;
+      .content {
+        padding: 18px 16px 16px;
+        min-height: 480px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="decor-circle"></div>
-    <div class="badge">Bhai Dooj 2025</div>
-
-    <div class="header">
-      <h1>Happy Bhai Dooj 💫</h1>
-      <p>
-        A small digital surprise, made just for you.
-      </p>
+  <div class="app-shell">
+    <div class="top-bar">
+      <span>🤍 Bhai Dooj special for <span id="sisNameTop">Sister</span></span>
     </div>
 
-    <div class="avatar-row">
-      <div class="avatar" id="sisterAvatar">
-        <span id="sisterInitial">S</span>
-        <span class="small">Sister</span>
-      </div>
-      <div class="between">🤍</div>
-      <div class="avatar" id="brotherAvatar">
-        <span id="brotherInitial">B</span>
-        <span class="small">Brother</span>
-      </div>
+    <div class="content">
+      <!-- SLIDE 1: Intro -->
+      <section class="slide active" data-slide="0">
+        <div class="tagline">FOR MY LOVELY SISTER</div>
+        <div class="title-main">Happy<br />Bhai Dooj</div>
+        <div class="subtitle">
+          Dear <span class="highlight-name" id="sisNameIntro">Sister</span>, thank you
+          for choosing me as your brother. I’m so lucky to have you.
+        </div>
+        <div class="badge-floating">Made with love by <span id="broNameBadge">Bhai</span> 💌</div>
+
+        <div class="card-illust">
+          <div class="stick-figures">
+            <div class="stick-boy"></div>
+            <div class="stick-girl"></div>
+          </div>
+          <p>
+            No matter how much we fight, you’ll always be my favourite partner-in-crime,
+            my secret keeper, and my forever little sunshine. 💖
+          </p>
+        </div>
+      </section>
+
+      <!-- SLIDE 2: Puzzle -->
+      <section class="slide" data-slide="1">
+        <div class="puzzle-title">Fill the chocolates to unlock a treat 🍫</div>
+        <div class="puzzle-sub">
+          Tap the boxes to place chocolates. When you fill a full row or column,
+          a sweet surprise appears!
+        </div>
+
+        <div class="grid" id="puzzleGrid">
+          <!-- cells created by JS -->
+        </div>
+        <div class="puzzle-success" id="puzzleSuccess">
+          You successfully unlocked a chocolate treat, yay 🍫✨
+        </div>
+      </section>
+
+      <!-- SLIDE 3: Letter -->
+      <section class="slide" data-slide="2">
+        <div class="letter-card">
+          <div class="letter-head">A LETTER</div>
+          <div class="letter-title">FROM YOUR BHAI ✧</div>
+          <div class="letter-dear">
+            Dear <span class="highlight-name" id="sisNameLetter">Sister</span> 💖
+          </div>
+          <div class="letter-body">
+            I just want to remind you how special you are to me. Thank you for
+            choosing me as your brother and for standing by me in every silly,
+            crazy, happy and sad moment. <br /><br />
+            May your life shine as bright as your smile, and may chocolates
+            always find their way to you. 🍫✨
+          </div>
+          <div class="letter-sign">
+            With love, your brother <span class="highlight-name" id="broNameLetter">Sahil</span> 💌
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4: Thank you -->
+      <section class="slide" data-slide="3">
+        <div class="thank-sub">✧ FROM YOUR BHAI, WITH LOVE ✧</div>
+        <div class="thank-title">Thank You<br />For Always Being There 💖</div>
+        <p class="thank-para">
+          You make every small thing brighter and happier. I’m so grateful to
+          have you in my life — thanks for being the sweetest part of my days,
+          my comfort person, and my forever friend. <br /><br />
+          This little card is just my way of saying: I see you, I appreciate
+          you, and I’ll always be there for you too. 🤍
+        </p>
+      </section>
+
+      <!-- SLIDE 5: Memories -->
+      <section class="slide" data-slide="4">
+        <div class="mem-card">
+          <div class="mem-title">Our Precious Memories 📸</div>
+          <div class="mem-chip-row">
+            <div><span class="chip-label">FROM:</span> Bhai</div>
+            <div><span class="chip-label">TO:</span> My Lovely Sister</div>
+          </div>
+          <div class="mem-image">
+            🤍
+          </div>
+          <div class="mem-footer">
+            <div>
+              <div><span class="chip-label">DATE:</span> Bhai Dooj</div>
+              <div><span class="chip-label">VALID FOR:</span> Forever ✨</div>
+            </div>
+            <div class="mem-sign">With love, your brother</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6: Music -->
+      <section class="slide" data-slide="5">
+        <div class="music-card">
+          <div class="music-title">A Few Songs For You 💕</div>
+          <div class="music-sub">
+            Press play and think of all our silly, sweet, chaotic memories together. 🎶
+          </div>
+          <div class="music-cover">🎧</div>
+          <div class="music-now">NOW PLAYING ♪</div>
+          <div class="music-song">“Ashiyan” – your comfort song</div>
+          <audio class="music-audio" controls>
+            <!-- Put your own mp3 file inside the repo and change the src name -->
+            <source src="song1.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+      </section>
     </div>
 
-    <div class="message-box" id="mainMessage">
-      Dear <span id="toNameSpan">Brother</span>,  
-      <br /><br />
-      Today on Bhai Dooj, I just want to say thank you for all the times you've
-      protected me, made me laugh, and stood by me.
-      <br /><br />
-      No matter how much we fight, you’ll always be my favorite headache and my
-      strongest support. Stay happy, stay blessed, and remember – your sister is
-      always there for you. 💖
-      <div class="names">
-        From <span id="fromNameSpan">Your Sister</span>
-      </div>
-    </div>
-
-    <div class="footer">
-      <button class="btn" id="surpriseBtn">
-        Tap for a small surprise ✨
+    <div class="bottom-nav">
+      <button class="nav-btn secondary" id="backBtn">
+        ← Back
       </button>
-      <div class="tiny">
-        Share this link with your sibling to make their day brighter 🌟
+      <div class="step-indicator">
+        Page <span id="stepNow">1</span> of <span id="stepTotal">6</span>
       </div>
+      <button class="nav-btn primary" id="nextBtn">
+        Next →
+      </button>
     </div>
   </div>
 
   <script>
-    // Read names from URL: ?from=Sahil&to=Ayesha
+    // === Name handling from URL ===
     const params = new URLSearchParams(window.location.search);
-    const fromName = params.get("from") || "Your Sister";
-    const toName = params.get("to") || "Dear Brother";
+    const brotherName = params.get("brother") || "Sahil";
+    const sisterName = params.get("sister") || "Payal";
 
-    document.getElementById("fromNameSpan").textContent = fromName;
-    document.getElementById("toNameSpan").textContent = toName;
+    // Put names in various places
+    document.getElementById("sisNameTop").textContent = sisterName;
+    document.getElementById("sisNameIntro").textContent = sisterName;
+    document.getElementById("sisNameLetter").textContent = sisterName;
+    document.getElementById("broNameBadge").textContent = brotherName;
+    document.getElementById("broNameLetter").textContent = brotherName;
 
-    // Set initials in avatars
-    const sisterInitialEl = document.getElementById("sisterInitial");
-    const brotherInitialEl = document.getElementById("brotherInitial");
+    // === Slides / navigation ===
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const backBtn = document.getElementById("backBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const stepNow = document.getElementById("stepNow");
+    const stepTotal = document.getElementById("stepTotal");
 
-    sisterInitialEl.textContent = (fromName.trim()[0] || "S").toUpperCase();
-    brotherInitialEl.textContent = (toName.trim()[0] || "B").toUpperCase();
+    let currentSlide = 0;
+    stepTotal.textContent = slides.length;
 
-    // Confetti generator
-    function launchConfetti() {
-      const colors = ["#ff7aa5", "#ff9a5c", "#ffd700", "#7dd3fc", "#a7f3d0"];
+    function updateSlides() {
+      slides.forEach((s, i) => {
+        s.classList.toggle("active", i === currentSlide);
+      });
+      stepNow.textContent = currentSlide + 1;
+      backBtn.disabled = currentSlide === 0;
+      nextBtn.disabled = currentSlide === slides.length - 1;
+      nextBtn.textContent =
+        currentSlide === slides.length - 1 ? "Done ✓" : "Next →";
+    }
 
-      for (let i = 0; i < 110; i++) {
-        const piece = document.createElement("div");
-        piece.classList.add("confetti-piece");
+    backBtn.addEventListener("click", () => {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlides();
+      }
+    });
 
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        const randomLeft = Math.random() * 100;
-        const randomXMove = (Math.random() - 0.5) * 200 + "px";
-        const randomDelay = Math.random() * 0.4;
+    nextBtn.addEventListener("click", () => {
+      if (currentSlide < slides.length - 1) {
+        currentSlide++;
+        updateSlides();
+      }
+    });
 
-        piece.style.left = randomLeft + "vw";
-        piece.style.background = randomColor;
-        piece.style.setProperty("--x-move", randomXMove);
-        piece.style.animationDelay = randomDelay + "s";
+    // === Puzzle logic ===
+    const gridEl = document.getElementById("puzzleGrid");
+    const successEl = document.getElementById("puzzleSuccess");
 
-        document.body.appendChild(piece);
+    const gridSize = 3;
+    const cells = [];
+    for (let i = 0; i < gridSize * gridSize; i++) {
+      const cell = document.createElement("div");
+      cell.className = "cell";
+      cell.dataset.index = i;
+      cell.textContent = "✕";
 
-        setTimeout(() => piece.remove(), 2000);
+      cell.addEventListener("click", () => {
+        // Toggle between X and chocolate
+        if (cell.classList.contains("choco")) {
+          cell.classList.remove("choco");
+          cell.textContent = "✕";
+        } else {
+          cell.classList.add("choco");
+          cell.textContent = "🍫";
+        }
+        checkWin();
+      });
+
+      cells.push(cell);
+      gridEl.appendChild(cell);
+    }
+
+    function checkWin() {
+      successEl.classList.remove("visible");
+
+      // Convert to 2D array of booleans (choco or not)
+      const grid = [];
+      for (let r = 0; r < gridSize; r++) {
+        const row = [];
+        for (let c = 0; c < gridSize; c++) {
+          const idx = r * gridSize + c;
+          row.push(cells[idx].classList.contains("choco"));
+        }
+        grid.push(row);
+      }
+
+      // Check any full row
+      let win = false;
+      for (let r = 0; r < gridSize; r++) {
+        if (grid[r].every(Boolean)) {
+          win = true;
+          break;
+        }
+      }
+      // Check any full column
+      if (!win) {
+        for (let c = 0; c < gridSize; c++) {
+          let colFull = true;
+          for (let r = 0; r < gridSize; r++) {
+            if (!grid[r][c]) {
+              colFull = false;
+              break;
+            }
+          }
+          if (colFull) {
+            win = true;
+            break;
+          }
+        }
+      }
+
+      if (win) {
+        successEl.classList.add("visible");
       }
     }
 
-    // Surprise button click
-    const btn = document.getElementById("surpriseBtn");
-    const msgBox = document.getElementById("mainMessage");
-
-    let clicked = false;
-
-    btn.addEventListener("click", () => {
-      launchConfetti();
-
-      if (!clicked) {
-        const extra = document.createElement("p");
-        extra.style.marginTop = "10px";
-        extra.style.fontSize = "12px";
-        extra.style.fontWeight = "600";
-        extra.style.color = "#c026d3";
-        extra.textContent = "P.S. This card was made with a lot of love and a little bit of code 💻💖";
-        msgBox.appendChild(extra);
-        clicked = true;
-      }
-    });
+    // Initial state
+    updateSlides();
   </script>
 </body>
 </html>
