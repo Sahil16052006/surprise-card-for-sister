@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Bhai Dooj Card 🤍</title>
+  <title>Thank You For Choosing Me As Your Brother 🤍</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
@@ -59,15 +59,6 @@
       color: var(--text-soft);
     }
 
-    .pill {
-      width: 32px;
-      height: 4px;
-      border-radius: 999px;
-      background: #ddd;
-      margin: 0 auto;
-      display: none;
-    }
-
     .content {
       padding: 22px 18px 18px;
       position: relative;
@@ -105,11 +96,11 @@
 
     .title-main {
       text-align: center;
-      font-size: 38px;
+      font-size: 32px;
       font-weight: 700;
       color: var(--pink);
-      line-height: 1.05;
-      margin-bottom: 6px;
+      line-height: 1.2;
+      margin-bottom: 8px;
     }
 
     .subtitle {
@@ -122,7 +113,7 @@
     .badge-floating {
       position: absolute;
       left: 50%;
-      top: 78px;
+      top: 82px;
       transform: translateX(-50%) rotate(-6deg);
       background: #ffd9e9;
       padding: 4px 14px;
@@ -138,7 +129,7 @@
       border-radius: 24px;
       padding: 18px;
       box-shadow: 0 12px 32px rgba(252, 182, 206, 0.35);
-      margin-top: 16px;
+      margin-top: 18px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -219,16 +210,9 @@
       font-weight: 600;
     }
 
-    .divider-dots {
-      text-align: center;
-      margin: 16px 0 6px;
-      font-size: 18px;
-      color: var(--pink);
-    }
-
     /* Puzzle slide */
     .puzzle-title {
-      font-size: 26px;
+      font-size: 24px;
       text-align: center;
       color: var(--pink);
       margin-bottom: 8px;
@@ -305,7 +289,7 @@
     }
 
     .letter-card::before {
-      content: "HAPPY";
+      content: "LOVE";
       position: absolute;
       font-size: 64px;
       font-weight: 800;
@@ -358,7 +342,7 @@
     /* Thank you slide */
     .thank-title {
       text-align: center;
-      font-size: 30px;
+      font-size: 28px;
       margin-bottom: 6px;
       color: var(--pink);
     }
@@ -581,19 +565,23 @@
 <body>
   <div class="app-shell">
     <div class="top-bar">
-      <span>🤍 Bhai Dooj special for <span id="sisNameTop">Sister</span></span>
+      <span>🤍 A small thank-you for <span id="sisNameTop">Sister</span></span>
     </div>
 
     <div class="content">
       <!-- SLIDE 1: Intro -->
       <section class="slide active" data-slide="0">
-        <div class="tagline">FOR MY LOVELY SISTER</div>
-        <div class="title-main">Happy<br />Bhai Dooj</div>
-        <div class="subtitle">
-          Dear <span class="highlight-name" id="sisNameIntro">Sister</span>, thank you
-          for choosing me as your brother. I’m so lucky to have you.
+        <div class="tagline">FOR MY PRECIOUS SISTER</div>
+        <div class="title-main">
+          Thank You<br />For Choosing Me 🤍
         </div>
-        <div class="badge-floating">Made with love by <span id="broNameBadge">Bhai</span> 💌</div>
+        <div class="subtitle">
+          Dear <span class="highlight-name" id="sisNameIntro">Sister</span>,
+          thank you for choosing me as your brother. I’m so lucky to have you.
+        </div>
+        <div class="badge-floating">
+          Made with love by <span id="broNameBadge">Bhai</span> 💌
+        </div>
 
         <div class="card-illust">
           <div class="stick-figures">
@@ -601,8 +589,8 @@
             <div class="stick-girl"></div>
           </div>
           <p>
-            No matter how much we fight, you’ll always be my favourite partner-in-crime,
-            my secret keeper, and my forever little sunshine. 💖
+            No matter how much we fight, you’ll always be my favourite
+            partner-in-crime, my secret keeper, and my forever little sunshine. 💖
           </p>
         </div>
       </section>
@@ -632,14 +620,15 @@
             Dear <span class="highlight-name" id="sisNameLetter">Sister</span> 💖
           </div>
           <div class="letter-body">
-            I just want to remind you how special you are to me. Thank you for
-            choosing me as your brother and for standing by me in every silly,
-            crazy, happy and sad moment. <br /><br />
+            I just want to remind you how special you are to me.
+            Thank you for choosing me as your brother and for standing by me in
+            every silly, crazy, happy and sad moment. <br /><br />
             May your life shine as bright as your smile, and may chocolates
             always find their way to you. 🍫✨
           </div>
           <div class="letter-sign">
-            With love, your brother <span class="highlight-name" id="broNameLetter">Sahil</span> 💌
+            With love, your brother
+            <span class="highlight-name" id="broNameLetter">Sahil</span> 💌
           </div>
         </div>
       </section>
@@ -670,7 +659,7 @@
           </div>
           <div class="mem-footer">
             <div>
-              <div><span class="chip-label">DATE:</span> Bhai Dooj</div>
+              <div><span class="chip-label">DATE:</span> Today</div>
               <div><span class="chip-label">VALID FOR:</span> Forever ✨</div>
             </div>
             <div class="mem-sign">With love, your brother</div>
@@ -687,9 +676,9 @@
           </div>
           <div class="music-cover">🎧</div>
           <div class="music-now">NOW PLAYING ♪</div>
-          <div class="music-song">“Ashiyan” – your comfort song</div>
+          <div class="music-song">“Phoolon Ka Taaron Ka” – for you 🤍</div>
           <audio class="music-audio" controls>
-            <!-- Put your own mp3 file inside the repo and change the src name -->
+            <!-- Upload song1.mp3 to this repo so this plays -->
             <source src="song1.mp3" type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
@@ -716,7 +705,6 @@
     const brotherName = params.get("brother") || "Sahil";
     const sisterName = params.get("sister") || "Payal";
 
-    // Put names in various places
     document.getElementById("sisNameTop").textContent = sisterName;
     document.getElementById("sisNameIntro").textContent = sisterName;
     document.getElementById("sisNameLetter").textContent = sisterName;
@@ -771,7 +759,6 @@
       cell.textContent = "✕";
 
       cell.addEventListener("click", () => {
-        // Toggle between X and chocolate
         if (cell.classList.contains("choco")) {
           cell.classList.remove("choco");
           cell.textContent = "✕";
@@ -789,7 +776,6 @@
     function checkWin() {
       successEl.classList.remove("visible");
 
-      // Convert to 2D array of booleans (choco or not)
       const grid = [];
       for (let r = 0; r < gridSize; r++) {
         const row = [];
@@ -800,7 +786,6 @@
         grid.push(row);
       }
 
-      // Check any full row
       let win = false;
       for (let r = 0; r < gridSize; r++) {
         if (grid[r].every(Boolean)) {
@@ -808,7 +793,6 @@
           break;
         }
       }
-      // Check any full column
       if (!win) {
         for (let c = 0; c < gridSize; c++) {
           let colFull = true;
@@ -830,7 +814,6 @@
       }
     }
 
-    // Initial state
     updateSlides();
   </script>
 </body>
